@@ -16,10 +16,10 @@ git clone to your location.
 
 
 ## Running the Application
-
+* ```py manage.py runserver```
 
 ## Project Documents
-* ```py manage.py runserver```
+
 
 All project-related documents are in the [Project Wiki](../../wiki/Home)
 
