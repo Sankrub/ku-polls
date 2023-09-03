@@ -12,7 +12,7 @@ Requires Python 3.8 or newer.  Required Python packages are listed in [requireme
 
 ## Install and Configure the Application
 git clone to your local.
-```git clone ```
+```git clone https://github.com/Sankrub/ku-polls.git```
 
 
 ## Running the Application
