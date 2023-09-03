@@ -1,0 +1,18 @@
+[
+{
+  "model": "polls.question",
+  "pk": 2,
+  "fields": {
+    "question_text": "Which programming language do you prefer?",
+    "pub_date": "2023-09-02T18:00:00Z"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 3,
+  "fields": {
+    "question_text": "Do you having fun with Django?",
+    "pub_date": "2023-09-02T00:00:00Z"
+  }
+}
+]
