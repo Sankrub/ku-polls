@@ -11,14 +11,15 @@ A polls application for [Individual Software Process](https://cpske.github.io/IS
 Requires Python 3.8 or newer.  Required Python packages are listed in [requirements.txt](./requirements.txt). 
 
 ## Install and Configure the Application
-git clone to your local.
-```git clone https://github.com/Sankrub/ku-polls.git```
+git clone to your location.
+* ```git clone https://github.com/Sankrub/ku-polls.git```
 
 
 ## Running the Application
-to be add
+
 
 ## Project Documents
+* ```py manage.py runserver```
 
 All project-related documents are in the [Project Wiki](../../wiki/Home)
 
