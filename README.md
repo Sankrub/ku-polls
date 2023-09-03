@@ -1,6 +1,6 @@
 # Web Polls for Kasetsart University
 
-*ISP STUDENTS: You can copy the STRUCTURE of this file and **some** of the TEXT, but you should also write your own content.*
+
 
 An application for conducting a poll or survey with multiple-choice questions, written in Python using Django. It is based on the [Django tutorial project][django-tutorial], and adds additional functionality.
 
