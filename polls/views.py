@@ -13,7 +13,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.filter(is_published=True).order_by("-pub_date")[:5]
+        return Question.objects.order_by("-pub_date")[:5]
 
 
 class DetailView(generic.DetailView):
@@ -24,7 +24,7 @@ class DetailView(generic.DetailView):
         """
         Excludes any questions that aren't published yet.
         """
-        return Question.objects.filter(is_published=True, can_vote=True)
+        return Question.objects.filter(pub_date__lte=timezone.now(),end_date__gte=timezone.now())
 
 
 class ResultsView(generic.DetailView):
@@ -34,15 +34,6 @@ class ResultsView(generic.DetailView):
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    if not question.can_vote:
-        return render(
-            request,
-            "polls/detail.html",
-            {
-                "question": question,
-                "error_message": "Running out of time not allow to vote."
-            }
-        )
     try:
         selected_choice = question.choice_set.get(pk=request.POST["choice"])
     except (KeyError, Choice.DoesNotExist):
@@ -69,6 +60,6 @@ def get_queryset(self):
     Return the last five published questions (not including those set to be
     published in the future).
     """
-    return Question.objects.filter(is_published=True, can_vote=True).order_by("-pub_date")[
+    return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")[
            :5
            ]
