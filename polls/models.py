@@ -13,7 +13,8 @@ class Question(models.Model):
         pub_date (datetime): The date the question was published.
     """
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField("date published")
+    pub_date = models.DateTimeField(default=timezone.now)
+    end_date = models.DateTimeField(null=True, blank=True)
 
     def was_published_recently(self):
         """
@@ -24,6 +25,15 @@ class Question(models.Model):
         """
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
+
+    def is_published(self):
+        return timezone.localtime(timezone.now()) >= timezone.localtime(self.pub_date)
+
+    def can_vote(self):
+        if self.end_date:
+            return self.pub_date <= timezone.localtime(timezone.now()) <= self.end_date
+        else:
+            return self.pub_date <= timezone.localtime(timezone.now())
 
     def __str__(self):
         """
