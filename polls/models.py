@@ -13,8 +13,8 @@ class Question(models.Model):
         pub_date (datetime): The date the question was published.
     """
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField(default=timezone.now)
-    end_date = models.DateTimeField(null=True, blank=True)
+    pub_date = models.DateTimeField("date published", default=timezone.now)
+    end_date = models.DateTimeField("date closed", default=None, null=True, blank=True)
 
     def was_published_recently(self):
         """
@@ -27,9 +27,19 @@ class Question(models.Model):
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
     def is_published(self):
+        """
+        Checks if the question is already published by checking with current time.
+
+        Returns:
+            bool: True if time the published time is less than current time.
+        """
         return timezone.localtime(timezone.now()) >= timezone.localtime(self.pub_date)
 
     def can_vote(self):
+        """
+        Check if the current time is between published time and close time.
+        :return:
+        """
         if self.end_date:
             return self.pub_date <= timezone.localtime(timezone.now()) <= self.end_date
         else:
