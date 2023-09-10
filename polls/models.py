@@ -33,17 +33,17 @@ class Question(models.Model):
         Returns:
             bool: True if time the published time is less than current time.
         """
-        return timezone.localtime(timezone.now()) >= timezone.localtime(self.pub_date)
+        return timezone.now() >= self.pub_date
 
     def can_vote(self):
         """
         Check if the current time is between published time and close time.
         :return:
         """
-        if self.end_date:
-            return self.pub_date <= timezone.localtime(timezone.now()) <= self.end_date
+        if self.end_date is not None:
+            return self.pub_date <= timezone.now() <= self.end_date
         else:
-            return self.pub_date <= timezone.localtime(timezone.now())
+            return self.pub_date <= timezone.now()
 
     def __str__(self):
         """
