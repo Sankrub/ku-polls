@@ -14,7 +14,7 @@ from pathlib import Path
 from decouple import config
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', default="KU")
 DEBUG = config('DEBUG', cast=bool, default=False)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')], default='localhost,127.0.0.1')
 # TIME_ZONE = config('TIME_ZONE', default='Asia/Bangkok')
