@@ -30,6 +30,17 @@ class DetailView(generic.DetailView):
         return Question.objects.filter(pub_date__lte=timezone.now())
 
     def get(self, request, *args, **kwargs):
+        """
+        Handle GET requests for the detail view.
+
+        Args:
+            request (HttpRequest): The HTTP request object.
+            *args: Additional positional arguments.
+            **kwargs: Additional keyword arguments.
+
+        Returns:
+            HttpResponse: The HTTP response containing the rendered detail page.
+        """
         try:
             self.object = self.get_object()
         except Http404:
