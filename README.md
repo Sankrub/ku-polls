@@ -1,5 +1,5 @@
 # Web Polls for Kasetsart University
-
+[![Django test](https://github.com/Sankrub/ku-polls/actions/workflows/python-app.yml/badge.svg)](https://github.com/Sankrub/ku-polls/actions/workflows/python-app.yml)
 
 
 An application for conducting a poll or survey with multiple-choice questions, written in Python using Django. It is based on the [Django tutorial project][django-tutorial], and adds additional functionality.
@@ -27,5 +27,6 @@ All project-related documents are in the [Project Wiki](../../wiki/Home)
 - [Requirements](../../wiki/Requirements)
 - [Development Plan](../../wiki/Development%20Plan)
 - [Iteration 1 Plan](../../wiki/Iteration%201%20Plan) and [Task Board](https://github.com/users/Sankrub/projects/1)
+- [Iteration 2 Plan](https://github.com/Sankrub/ku-polls/wiki/Iteration-2-plan) and [Task Board](https://github.com/users/Sankrub/projects/1/views/2)
 
 [django-tutorial]: https://docs.djangoproject.com/en/3.1/intro/tutorial01/
