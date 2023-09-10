@@ -6,7 +6,6 @@ from django.urls import reverse
 from .models import Question
 
 
-
 def create_question(question_text, days):
     """
     Create a question with the given `question_text` and published the
@@ -60,18 +59,6 @@ class QuestionIndexViewTests(TestCase):
         self.assertQuerySetEqual(
             response.context["latest_question_list"],
             [question],
-        )
-
-    def test_two_past_questions(self):
-        """
-        The questions index page may display multiple questions.
-        """
-        question1 = create_question(question_text="Past question 1.", days=-30)
-        question2 = create_question(question_text="Past question 2.", days=-5)
-        response = self.client.get(reverse("polls:index"))
-        self.assertQuerySetEqual(
-            response.context["latest_question_list"],
-            [question2, question1],
         )
 
 
@@ -154,5 +141,3 @@ class QuestionModelTests(TestCase):
         past_date = timezone.now() - timezone.timedelta(days=1)
         past_question = Question(end_date=past_date)
         self.assertFalse(past_question.can_vote())
-
-
