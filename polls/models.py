@@ -11,6 +11,7 @@ class Question(models.Model):
     Attributes:
         question_text (str): The text of the question.
         pub_date (datetime): The date the question was published.
+        end_date (datetime): The date the question is closed (optional).
     """
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField("date published", default=timezone.now)
