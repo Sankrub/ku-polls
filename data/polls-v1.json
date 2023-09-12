@@ -4,7 +4,8 @@
   "pk": 2,
   "fields": {
     "question_text": "Which programming language do you prefer?",
-    "pub_date": "2023-09-02T18:00:00Z"
+    "pub_date": "2023-09-02T18:00:00Z",
+    "end_date": null
   }
 },
 {
@@ -12,7 +13,236 @@
   "pk": 3,
   "fields": {
     "question_text": "Do you having fun with Django?",
-    "pub_date": "2023-09-02T00:00:00Z"
+    "pub_date": "2023-09-02T00:00:00Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 4,
+  "fields": {
+    "question_text": "Which programming framework do you use?",
+    "pub_date": "2023-09-12T14:26:10Z",
+    "end_date": "2024-02-04T14:26:16Z"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 5,
+  "fields": {
+    "question_text": "What is your favorite integrated development environment (IDE)?",
+    "pub_date": "2023-09-12T14:27:11Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 6,
+  "fields": {
+    "question_text": "What is your preferred version control system?",
+    "pub_date": "2023-09-12T14:30:20Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 7,
+  "fields": {
+    "question_text": "Which database management system (DBMS) do you use most often?",
+    "pub_date": "2023-09-12T14:31:53Z",
+    "end_date": null
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 1,
+  "fields": {
+    "question": 2,
+    "choice_text": "c"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 2,
+  "fields": {
+    "question": 2,
+    "choice_text": "python"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 3,
+  "fields": {
+    "question": 2,
+    "choice_text": "java"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 4,
+  "fields": {
+    "question": 2,
+    "choice_text": "c#"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 5,
+  "fields": {
+    "question": 3,
+    "choice_text": "yes"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 6,
+  "fields": {
+    "question": 3,
+    "choice_text": "no"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 7,
+  "fields": {
+    "question": 4,
+    "choice_text": "Django"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 8,
+  "fields": {
+    "question": 4,
+    "choice_text": "React"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 9,
+  "fields": {
+    "question": 4,
+    "choice_text": "Angular"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 10,
+  "fields": {
+    "question": 5,
+    "choice_text": "Visual Studio Code"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 11,
+  "fields": {
+    "question": 5,
+    "choice_text": "PyCharm"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 12,
+  "fields": {
+    "question": 5,
+    "choice_text": "Sublime Text"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 13,
+  "fields": {
+    "question": 5,
+    "choice_text": "IntelliJ IDEA"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 14,
+  "fields": {
+    "question": 6,
+    "choice_text": "Git"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 15,
+  "fields": {
+    "question": 6,
+    "choice_text": "Subversion (SVN)"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 16,
+  "fields": {
+    "question": 6,
+    "choice_text": "Mercurial"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 17,
+  "fields": {
+    "question": 6,
+    "choice_text": "Perforce"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 18,
+  "fields": {
+    "question": 7,
+    "choice_text": "PostgreSQL"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 19,
+  "fields": {
+    "question": 7,
+    "choice_text": "MySQL"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 20,
+  "fields": {
+    "question": 7,
+    "choice_text": "MongoDB"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 21,
+  "fields": {
+    "question": 7,
+    "choice_text": "SQLite"
+  }
+},
+{
+  "model": "polls.vote",
+  "pk": 1,
+  "fields": {
+    "choice": 5,
+    "user": 3
+  }
+},
+{
+  "model": "polls.vote",
+  "pk": 2,
+  "fields": {
+    "choice": 2,
+    "user": 3
+  }
+},
+{
+  "model": "polls.vote",
+  "pk": 3,
+  "fields": {
+    "choice": 17,
+    "user": 3
   }
 }
 ]
