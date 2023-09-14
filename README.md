@@ -18,6 +18,13 @@ git clone to your location.
 ## Running the Application
 * ```py manage.py runserver```
 
+## Username and Password demo for login
+| Username  | Password        |
+|-----------|-----------------|
+|   demo1   | stupidpassword1 |
+|   demo2   | stupidpassword2 |
+|   Harry   |    hackme22     |
+
 ## Project Documents
 
 
