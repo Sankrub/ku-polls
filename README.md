@@ -35,5 +35,6 @@ All project-related documents are in the [Project Wiki](../../wiki/Home)
 - [Development Plan](../../wiki/Development%20Plan)
 - [Iteration 1 Plan](../../wiki/Iteration%201%20Plan) and [Task Board](https://github.com/users/Sankrub/projects/1)
 - [Iteration 2 Plan](https://github.com/Sankrub/ku-polls/wiki/Iteration-2-plan) and [Task Board](https://github.com/users/Sankrub/projects/1/views/2)
+- [Iteration 3 Plan](https://github.com/Sankrub/ku-polls/wiki/Iteration-3-plan) and [Task Board](https://github.com/users/Sankrub/projects/1/views/3)
 
 [django-tutorial]: https://docs.djangoproject.com/en/3.1/intro/tutorial01/
