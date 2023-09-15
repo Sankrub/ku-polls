@@ -4,8 +4,10 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from django.contrib import messages
-
-from .models import Choice, Question
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from .models import Choice, Question, Vote
 
 
 class IndexView(generic.ListView):
@@ -14,7 +16,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.filter(pub_date__lte=timezone.now()).order_by("pub_date")[:5]
+        return Question.objects.filter(pub_date__lte=timezone.now()).order_by("pub_date")[:]
         # return Question.objects.filter(pub_date__lte=timezone.now()).exclude(
         #     end_date__lt=timezone.now()).order_by("pub_date")[:5]
 
@@ -31,26 +33,21 @@ class DetailView(generic.DetailView):
 
     def get(self, request, *args, **kwargs):
         """
-        Handle GET requests for the detail view.
+        Handle the poll that available for vote.
+        If not available show error messages and redirect to index page.
 
-        Args:
-            request (HttpRequest): The HTTP request object.
-            *args: Additional positional arguments.
-            **kwargs: Additional keyword arguments.
+        Args: *args: Additional positional arguments.
+              **kwargs: Additional keyword arguments.
 
         Returns:
-            HttpResponse: The HTTP response containing the rendered detail page.
-        """
-        try:
-            self.object = self.get_object()
-        except Http404:
-            raise Http404("Question does not exist")
-        if not self.object.can_vote():
-            messages.error(request, "Voting is not allowed for this question.")
-            return HttpResponseRedirect(reverse("polls:index"))
+            Rendered HTML page displaying the poll details or a redirect to the index page.
 
-        context = self.get_context_data(object=self.object)
-        return self.render_to_response(context)
+        """
+        question = get_object_or_404(Question, pk=kwargs['pk'])
+        if not question.can_vote():
+            messages.error(request, "This poll is not allow voting.")
+            return redirect('polls:index')
+        return render(request, 'polls/detail.html', {'question': question})
 
 
 class ResultsView(generic.DetailView):
@@ -58,34 +55,28 @@ class ResultsView(generic.DetailView):
     template_name = "polls/results.html"
 
 
+@login_required
 def vote(request, question_id):
+    """Handles the voting for a question's choices."""
     question = get_object_or_404(Question, pk=question_id)
     try:
-        selected_choice = question.choice_set.get(pk=request.POST["choice"])
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the question voting form.
-        return render(
-            request,
-            "polls/detail.html",
-            {
-                "question": question,
-                "error_message": "You didn't select a choice.",
-            },
-        )
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
+        return render(request, 'polls/detail.html', {
+            'question': question,
+            'error_message': "You didn't select a choice.",
+        })
 
+    this_user = request.user
+    try:
+        # Find a vote for this user and this question.
+        vote = Vote.objects.get(user=this_user, choice__question=question)
+        vote.choice = selected_choice
+    except Vote.DoesNotExist:
+        # No matching vote - create a new vote.
+        vote = Vote(user=this_user, choice=selected_choice)
+    vote.save()
+    return HttpResponseRedirect(reverse('polls:results', args=(question_id,)))
 
-def get_queryset(self):
-    """
-    Return the last five published questions (not including those set to be
-    published in the future).
-    """
-    return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")[
-           :5
-           ]
+    # TODO: Use messages to display a confirmation on the result page.
