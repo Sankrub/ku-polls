@@ -1,30 +1,176 @@
-
-{% load static %}
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <title>Welcome to KU Poll</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+    <style>
+        /* Reset some default styles */
+        body, h1, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Global Styles */
+        body {
+            background-color: #bab7fa;
+            font-family: "Times New Roman", Times, serif;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #bab7fa;
+        }
+
+        .header {
+            background-color: #b26cfc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .header a:hover{
+            color: #9142a8;
+        }
+
+        h1 {
+            color: #FFFFFF;
+            font-size: 36px;
+        }
+
+        .header i.fas{
+            font size: 24px;
+            margin-left: 20px;
+        }
+
+
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        li {
+            width: calc(50% - 20px); /* Two boxes per row with spacing */
+            margin: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+            display: inline-block;
+            box-sizing: border-box;
+            background-color: #FDDFFF; /* Light blue background (change this color) */
+            border: 1px solid #ddd; /* Light gray border */
+            color: #333; /* Dark text color */
+        }
+
+        li:hover {
+            transform: scale(1.05);
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        .content {
+            min-height: calc(100vh - 90px);
+            padding-bottom: 60px;
+        }
+
+        .footer {
+            background-color: #202020;
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .question-link {
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .question-link:hover {
+            color: #000000;
+        }
+
+        .result-link {
+            color: #000000;
+        }
+
+        .result-link:hover {
+            color: #9142a8;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to KU Poll</h1>
+    <div class="container">
+    <header class="header">
+        <h1>Welcome to KU Poll</h1>
+        {% if user.is_authenticated %}
+            <div>
+                <strong>
+                    <i class="fas fa-user-circle"></i>
+                    Welcome back {{ user.username }}!
+                </strong>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        {% else %}
+            <div><a href="{% url 'login' %}?next={{ request.path }}">Login</a></div>
+        {% endif %}
+    </header>
 
-    {% if latest_question_list %}
-        <ul>
-        {% for question in latest_question_list %}
-            <li>
-                <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
-                {% if question.can_vote %}
-                    (<a href="{% url 'polls:results' question.id %}">Results</a>)
-                {% endif %}
-            </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No polls are available.</p>
-    {% endif %}
+
+
+        <main class="content">
+            {% if latest_question_list %}
+                <ul>
+                {% for question in latest_question_list %}
+                    <li onclick="location.href='{% url 'polls:detail' question.id %}'">
+                        <a class="question-link" href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+                        {% if question.can_vote %}
+                            (<a class="result-link" href="{% url 'polls:results' question.id %}">Results</a>)
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No polls are available.</p>
+            {% endif %}
+        </main>
+
+        <footer class="footer">
+            &copy; 2023 KU Poll
+        </footer>
+    </div>
 </body>
 </html>
-
-
