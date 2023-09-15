@@ -1,14 +1,183 @@
-<form action="{% url 'polls:vote' question.id %}" method="post">
-{% csrf_token %}
-<fieldset>
-    <legend><h1>{{ question.question_text }}</h1></legend>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    {% for choice in question.choice_set.all %}
-        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-    {% endfor %}
-</fieldset>
-<input type="submit" value="Vote">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote: {{ question.question_text }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/poll.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-<a href="{% url 'polls:index' %}">Back to Question List</a>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #bab7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Add this line to make content stack vertically */
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-radius: 10px;
+            width: 100%; /* Add this line to make the container full-width */
+        }
+
+        .home-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size:30px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .header i.fas{
+            font size: 24px;
+            margin-right: 10px;
+        }
+
+        .header {
+            text-align: left;
+            padding: 20px 0;
+            margin-left: 25px;
+
+        }
+
+        .question-text {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .error-message {
+            color: #FF0000;
+            font-weight: bold;
+        }
+
+        .choices {
+            list-style: none;
+            padding: 0;
+        }
+
+        .choice {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .choice input[type="radio"] {
+            margin-right: 10px;
+            visibility: hidden;
+        }
+
+        .choice label {
+            font-size: 18px;
+            cursor: pointer;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .choice label:before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: #f0ceed;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .choice input[type="radio"]:checked + label:before {
+            background-color: #9d52cf;
+        }
+
+        .vote-button {
+            background-color: #dfb2e1;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .vote-button:hover {
+            background-color: #dfb2e1;
+            transform: scale(1.05);
+        }
+
+        .welcome-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            padding: 20px;
+        }
+
+        .welcome-text {
+            font-size: 22px;
+        }
+
+        .user-info {
+            font-size: 20px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <div class="user-info">
+            {% if user.is_authenticated %}
+                <strong>
+                    <i class="fas fa-user-circle"></i>
+                    Let's do it {{ user.username }}!
+                </strong>
+            {% endif %}
+        </div>
+        <a class="home-icon" href="{% url 'polls:index' %}">&#127968;</a>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="question-text">{{ question.question_text }}</h1>
+        </header>
+
+        <main class="main-content">
+            <form class="poll-form" action="{% url 'polls:vote' question.id %}" method="post">
+                {% csrf_token %}
+                {% if error_message %}
+                    <p class="error-message"><strong>{{ error_message }}</strong></p>
+                {% endif %}
+                <ul class="choices">
+                    {% for choice in question.choice_set.all %}
+                        <li class="choice">
+                            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button class="vote-button" type="submit">Vote</button>
+            </form>
+        </main>
+
+        <footer class="footer">
+            <!-- Remove the "Back to Question List" link -->
+        </footer>
+    </div>
+</body>
+</html>
