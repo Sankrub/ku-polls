@@ -1,3 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results for {{ question.question_text }}</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        h1 {
+            background-color: #c07ae2;
+            color: white;
+            padding: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 20px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #c07ae2;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #c07ae2;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease-in-out;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background-color: #9142a8;
+            transform: scale(1.05)
+        }
+    </style>
+</head>
+<body>
 <h1>{{ question.question_text }}</h1>
 
 <table>
@@ -17,6 +74,6 @@
     </tbody>
 </table>
 
-
 <a href="{% url 'polls:index' %}">Back to Question List</a>
-
+</body>
+</html>
