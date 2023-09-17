@@ -1,22 +1,102 @@
-<h1>{{ question.question_text }}</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results for {{ question.question_text }}</title>
 
-<table>
-    <thead>
-        <tr>
-            <th>Choice</th>
-            <th>Votes</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for choice in question.choice_set.all %}
-        <tr>
-            <td>{{ choice.choice_text }}</td>
-            <td>{{ choice.votes }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
 
+        h1 {
+            background-color: #c07ae2;
+            color: white;
+            padding: 20px;
+        }
 
-<a href="{% url 'polls:index' %}">Back to Question List</a>
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
+        th, td {
+            padding: 12px 20px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #c07ae2;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #c07ae2;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease-in-out;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background-color: #9142a8;
+            transform: scale(1.05);
+        }
+
+        .confirmation-container {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 0;
+        }
+
+        .confirmation-message {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Display the confirmation message if it exists -->
+    {% if messages %}
+        <div class="confirmation-container">
+            <p class="confirmation-message">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </p>
+        </div>
+    {% endif %}
+
+    <h1>{{ question.question_text }}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Choice</th>
+                <th>Votes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for choice in question.choice_set.all %}
+            <tr>
+                <td>{{ choice.choice_text }}</td>
+                <td>{{ choice.votes }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'polls:index' %}">Back to Question List</a>
+</body>
+</html>
