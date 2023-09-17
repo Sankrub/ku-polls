@@ -157,30 +157,31 @@
             <h1 class="question-text">{{ question.question_text }}</h1>
         </header>
 
-<main class="main-content">
-        <form class="poll-form" action="{% url 'polls:vote' question.id %}" method="post">
-            {% csrf_token %}
-            {% if error_message %}
-                <p class="error-message"><strong>{{ error_message }}</strong></p>
-            {% endif %}
-            <ul class="choices">
-                {% for choice in question.choice_set.all %}
-                    <li class="choice">
-                        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}"
-                            {% if selected_choice_text == choice.choice_text %}
-                                checked
+        <main class="main-content">
+            <form class="poll-form" action="{% url 'polls:vote' question.id %}" method="post">
+                {% csrf_token %}
+                {% if error_message %}
+                    <p class="error-message"><strong>{{ error_message }}</strong></p>
+                {% endif %}
+                <ul class="choices">
+                    {% for choice in question.choice_set.all %}
+                        <li class="choice">
+                            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}"
+                                {% if selected_choice == choice %}
+                                    checked
+                                {% endif %}
+                            >
+                            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+                            {% if selected_choice == choice %}
+                                <p class="error-message"><
+                                <p class="error-message"><strong>You selected this choice previously.</strong></p>
                             {% endif %}
-                        >
-                        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
-                        {% if selected_choice_text == choice.choice_text %}
-                            <p class="error-message"><strong>You just selected this choice previously.</strong></p>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-            <button class="vote-button" type="submit">Vote</button>
-        </form>
-    </main>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button class="vote-button" type="submit">Vote</button>
+            </form>
+        </main>
 
         <footer class="footer">
             <!-- Remove the "Back to Question List" link -->
