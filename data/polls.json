@@ -86,7 +86,7 @@
   "fields": {
     "question_text": "What is the term for a piece of code that is used to solve a specific problem or perform a specific task within a program?",
     "pub_date": "2023-09-13T16:32:01Z",
-    "end_date": "2023-09-13T16:32:04Z"
+    "end_date": null
   }
 },
 {
@@ -397,7 +397,7 @@
   "model": "polls.vote",
   "pk": 3,
   "fields": {
-    "choice": 17,
+    "choice": 15,
     "user": 3
   }
 },
@@ -413,7 +413,7 @@
   "model": "polls.vote",
   "pk": 5,
   "fields": {
-    "choice": 22,
+    "choice": 23,
     "user": 3
   }
 },
@@ -461,7 +461,7 @@
   "model": "polls.vote",
   "pk": 11,
   "fields": {
-    "choice": 35,
+    "choice": 34,
     "user": 3
   }
 },
@@ -469,7 +469,7 @@
   "model": "polls.vote",
   "pk": 12,
   "fields": {
-    "choice": 31,
+    "choice": 30,
     "user": 3
   }
 },
@@ -479,6 +479,54 @@
   "fields": {
     "choice": 38,
     "user": 3
+  }
+},
+{
+  "model": "polls.vote",
+  "pk": 14,
+  "fields": {
+    "choice": 19,
+    "user": 3
+  }
+},
+{
+  "model": "polls.vote",
+  "pk": 15,
+  "fields": {
+    "choice": 9,
+    "user": 9
+  }
+},
+{
+  "model": "polls.vote",
+  "pk": 16,
+  "fields": {
+    "choice": 34,
+    "user": 9
+  }
+},
+{
+  "model": "polls.vote",
+  "pk": 17,
+  "fields": {
+    "choice": 44,
+    "user": 3
+  }
+},
+{
+  "model": "polls.vote",
+  "pk": 18,
+  "fields": {
+    "choice": 22,
+    "user": 11
+  }
+},
+{
+  "model": "polls.vote",
+  "pk": 19,
+  "fields": {
+    "choice": 13,
+    "user": 11
   }
 }
 ]
