@@ -105,8 +105,7 @@ LOGIN_REDIRECT_URL = 'polls:index'  # after login, show list of polls
 LOGOUT_REDIRECT_URL = 'login'  # after logout, direct to login page
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'polls/static')]
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
