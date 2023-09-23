@@ -17,6 +17,8 @@ Requires Python 3.8 or newer.  Required Python packages are listed in [requireme
 ## Running the Application (if python doesn't work use python3 instead)
 #### Clone repository from github
 * ```git clone https://github.com/Sankrub/ku-polls.git```
+#### Install Dependencies
+* ```pip install -r requirements.txt```
 #### Run the server
 * ```python manage.py runserver```
 #### Go to the browser.
