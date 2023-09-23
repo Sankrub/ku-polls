@@ -31,7 +31,7 @@ Configure the app by setting values for externalized variables. Create a `.env` 
 - DATABASE_URL=your_database_url
 
 
-## 6. Run Migrations
+## 6. Run Migrations (if python doesn't work use python3 instead)
 
 Apply database migrations to create the database schema: 
 
