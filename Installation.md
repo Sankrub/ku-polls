@@ -58,6 +58,7 @@ If your app includes data fixtures, you can load initial data into the database:
 ## 9. Start the Development Server
 
 Start the development server to run your app: 
+
 ```python manage.py runserver```
 
 
