@@ -14,8 +14,13 @@ Requires Python 3.8 or newer.  Required Python packages are listed in [requireme
 [Installation Guide](Installation.md)
 
 
-## Running the Application
-* ```py manage.py runserver```
+## Running the Application (if python doesn't work use python3 instead)
+#### Clone repository from github
+* ```git clone https://github.com/Sankrub/ku-polls.git```
+#### Run the server
+* ```python manage.py runserver```
+#### Go to the browser.
+* ```http://localhost:8000```
 
 ## Username and Password demo for login
 | Username  | Password        |
