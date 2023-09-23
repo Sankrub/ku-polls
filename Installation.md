@@ -2,7 +2,7 @@
 ## 1. Clone the Repository
 
 Clone or download the code from the GitHub repository using:
-```git clone command```
+```git clone https://github.com/Sankrub/ku-polls.git```
 
 ## 2. Create a Virtual Environment
 * ```python -m venv venv```
