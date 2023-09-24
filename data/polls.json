@@ -86,7 +86,7 @@
   "fields": {
     "question_text": "What is the term for a piece of code that is used to solve a specific problem or perform a specific task within a program?",
     "pub_date": "2023-09-13T16:32:01Z",
-    "end_date": null
+    "end_date": "2023-09-24T06:15:20Z"
   }
 },
 {
@@ -469,7 +469,7 @@
   "model": "polls.vote",
   "pk": 12,
   "fields": {
-    "choice": 30,
+    "choice": 31,
     "user": 3
   }
 },

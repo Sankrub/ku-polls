@@ -130,6 +130,10 @@
         .result-link:hover {
             color: #9142a8;
         }
+        .closed-text {
+        font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
@@ -162,6 +166,10 @@
             {% elif question.can_vote %}
                 <span class="question-link">{{ question.question_text }}</span>
                 (<a class="result-link" href="{% url 'polls:results' question.id %}">Results</a>)
+            {% elif not question.can_vote %}
+            <span class="question-link">{{ question.question_text }}</span>
+            (<a class="result-link" href="{% url 'polls:results' question.id %}">Results</a>)
+            <span class="closed-text">(Closed)</span>
             {% else %}
                 <span class="question-link">{{ question.question_text }}</span>
             {% endif %}
@@ -171,9 +179,6 @@
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
-
-
-
         </main>
 
         <footer class="footer">
