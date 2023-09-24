@@ -1,10 +1,11 @@
 # Installation and Configuration Guide
 ## 1. Clone the Repository
 
-Clone or download the code from the GitHub repository using:
+Clone or download the code from the GitHub repository using after that change the directory:
 
 ```git clone https://github.com/Sankrub/ku-polls.git```
 
+``` cd ku-polls```
 ## 2. Create a Virtual Environment
 * ```python -m venv venv```
 
@@ -37,6 +38,11 @@ Apply database migrations to create the database schema:
 
 ```python manage.py migrate```
 
+If it not work then use.
+* On MacOS or Linux
+```cp sample.env .env```
+* On Windows
+```copy sample.env .env```
 
 ## 7. Run Tests
 
