@@ -31,6 +31,10 @@ Requires Python 3.8 or newer.  Required Python packages are listed in [requireme
 |   demo2   | stupidpassword2 |
 |   Harry   |    hackme22     |
 
+## Username and Password for admin
+| Username  | Password        |
+|-----------|-----------------|
+|   Harry   |    hackme22     |
 ## Project Documents
 
 
