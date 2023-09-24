@@ -138,47 +138,40 @@
 </head>
 <body>
     <div class="container">
-    <header class="header">
-        <h1>Welcome to KU Polls</h1>
-        {% if user.is_authenticated %}
-            <div>
-                <strong>
-                    <i class="fas fa-user-circle"></i>
-                    Welcome back {{ user.username }}!
-                </strong>
-                <a href="{% url 'logout' %}">Logout</a>
-            </div>
-        {% else %}
-            <div><a href="{% url 'login' %}?next={{ request.path }}">Login</a></div>
-        {% endif %}
-    </header>
-
-
+        <header class="header">
+            <h1>Welcome to KU Polls</h1>
+            {% if user.is_authenticated %}
+                <div>
+                    <strong>
+                        <i class="fas fa-user-circle"></i>
+                        Welcome back {{ user.username }}!
+                    </strong>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            {% else %}
+                <div><a href="{% url 'login' %}?next={{ request.path }}">Login</a></div>
+            {% endif %}
+        </header>
 
         <main class="content">
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li>
-            {% if question.can_vote and user.is_authenticated %}
-                <a class="question-link" href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
-                (<a class="result-link" href="{% url 'polls:results' question.id %}">Results</a>)
-            {% elif question.can_vote %}
-                <span class="question-link">{{ question.question_text }}</span>
-                (<a class="result-link" href="{% url 'polls:results' question.id %}">Results</a>)
-            {% elif not question.can_vote %}
-            <span class="question-link">{{ question.question_text }}</span>
-            (<a class="result-link" href="{% url 'polls:results' question.id %}">Results</a>)
-            <span class="closed-text">(Closed)</span>
+            {% if latest_question_list %}
+                <ul>
+                {% for question in latest_question_list %}
+                    <li>
+                        {% if not question.can_vote %}
+                            <span class="question-link">{{ question.question_text }}</span>
+                            (<a class="result-link" href="{% url 'polls:results' question.id %}">Results</a>)
+                            <span class="closed-text">(Closed)</span>
+                        {% else %}
+                            <a class="question-link" href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+                            (<a class="result-link" href="{% url 'polls:results' question.id %}">Results</a>)
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
             {% else %}
-                <span class="question-link">{{ question.question_text }}</span>
+                <p>No polls are available.</p>
             {% endif %}
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
         </main>
 
         <footer class="footer">

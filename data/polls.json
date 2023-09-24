@@ -394,10 +394,58 @@
   }
 },
 {
+  "model": "polls.choice",
+  "pk": 45,
+  "fields": {
+    "question": 2,
+    "choice_text": "Other"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 46,
+  "fields": {
+    "question": 4,
+    "choice_text": "Other"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 47,
+  "fields": {
+    "question": 5,
+    "choice_text": "Other"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 48,
+  "fields": {
+    "question": 7,
+    "choice_text": "Other"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 49,
+  "fields": {
+    "question": 9,
+    "choice_text": "Other"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 50,
+  "fields": {
+    "question": 6,
+    "choice_text": "Other"
+  }
+},
+{
   "model": "polls.vote",
   "pk": 3,
   "fields": {
-    "choice": 15,
+    "choice": 14,
     "user": 3
   }
 },
@@ -405,7 +453,7 @@
   "model": "polls.vote",
   "pk": 4,
   "fields": {
-    "choice": 10,
+    "choice": 12,
     "user": 3
   }
 },
@@ -413,7 +461,7 @@
   "model": "polls.vote",
   "pk": 5,
   "fields": {
-    "choice": 23,
+    "choice": 22,
     "user": 3
   }
 },
@@ -445,7 +493,7 @@
   "model": "polls.vote",
   "pk": 9,
   "fields": {
-    "choice": 24,
+    "choice": 27,
     "user": 3
   }
 },
@@ -485,7 +533,7 @@
   "model": "polls.vote",
   "pk": 14,
   "fields": {
-    "choice": 19,
+    "choice": 21,
     "user": 3
   }
 },

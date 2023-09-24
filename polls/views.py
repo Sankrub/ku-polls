@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Choice, Question, Vote
+from django.contrib.auth import get_user_model
 
 
 class IndexView(generic.ListView):
@@ -19,13 +20,12 @@ class IndexView(generic.ListView):
         #     end_date__lt=timezone.now()).order_by("pub_date")[:5]
 
 
+User = get_user_model()  # Get the user model
+
+
 class DetailView(generic.DetailView):
     model = Question
     template_name = "polls/detail.html"
-
-    def detail(request, question_id):
-        question = get_object_or_404(Question, pk=question_id)
-        return render(request, 'polls/detail.html', {'question': question})
 
     def get_queryset(self):
         """
@@ -48,13 +48,18 @@ class DetailView(generic.DetailView):
         """
         question = get_object_or_404(Question, pk=kwargs['pk'])
 
-        # Check if the user has already voted for this question
-        selected_choice = None
-        try:
-            vote = Vote.objects.get(user=request.user, choice__question=question)
-            selected_choice = vote.choice
-        except Vote.DoesNotExist:
-            pass
+        # Check if the user is authenticated
+        if request.user.is_authenticated:
+            # Check if the user has already voted for this question
+            selected_choice = None
+            try:
+                vote = Vote.objects.get(user=request.user, choice__question=question)
+                selected_choice = vote.choice
+            except Vote.DoesNotExist:
+                pass
+        else:
+            # For anonymous users, set selected_choice to None
+            selected_choice = None
 
         if not question.can_vote():
             messages.error(request, "This poll is not allowed for voting.")
@@ -62,8 +67,12 @@ class DetailView(generic.DetailView):
 
         return render(request, 'polls/detail.html', {
             'question': question,
-            'selected_choice': selected_choice,  # Pass the selected choice to the template
+            'selected_choice': selected_choice,
         })
+
+    def detail(request, question_id):
+        question = get_object_or_404(Question, pk=question_id)
+        return render(request, 'polls/detail.html', {'question': question})
 
 
 class ResultsView(generic.DetailView):
